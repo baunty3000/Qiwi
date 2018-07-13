@@ -1,0 +1,336 @@
+{
+  "content":{
+    "elements":[
+      {
+        "type":"field",
+        "name":"account",
+        "validator":{
+          "type":"predicate",
+          "predicate":{
+            "type":"regex",
+            "pattern":"^2$|^5$"
+          },
+          "message":"Необходимо выбрать тип аккаунта"
+        },
+        "view":{
+          "title":"Тип аккаунта",
+          "prompt":"Выберите тип аккаунта",
+          "widget":{
+            "type":"radio",
+            "choices":[
+              {
+                "value":"2",
+                "title":"Номер аккаунта"
+              },
+              {
+                "value":"5",
+                "title":"Номер почты"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "type":"dependency",
+        "condition":{
+          "type":"predicate",
+          "field":"account",
+          "predicate":{
+            "type":"regex",
+            "pattern":"^2$"
+          }
+        },
+        "content":{
+          "elements":[
+            {
+              "type":"field",
+              "name":"mfo",
+              "validator":{
+                "type":"predicate",
+                "predicate":{
+                  "type":"regex",
+                  "pattern":"^\\d{9}$"
+                },
+                "message":"Неверный акк"
+              },
+              "view":{
+                "title":"акк",
+                "prompt":"Введите акк",
+                "widget":{
+                  "type":"text",
+                  "keyboard":"text"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type":"dependency",
+        "condition":{
+          "type":"predicate",
+          "field":"account",
+          "predicate":{
+            "type":"regex",
+            "pattern":"^5$"
+          }
+        },
+        "content":{
+          "elements":[
+            {
+              "type":"field",
+              "name":"mfo",
+              "validator":{
+                "type":"predicate",
+                "predicate":{
+                  "type":"regex",
+                  "pattern":"^\\d{9}$"
+                },
+                "message":"Дадада внизу"
+              },
+              "view":{
+                "title":"Это 2й элемент",
+                "prompt":"Это 2й элемент",
+                "widget":{
+                  "type":"text",
+                  "keyboard":"numeric"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type":"field",
+        "name":"account_type",
+        "validator":{
+          "type":"predicate",
+          "predicate":{
+            "type":"regex",
+            "pattern":"^2$|^5$"
+          },
+          "message":"Необходимо выбрать тип идентификатора"
+        },
+        "view":{
+          "title":"Тип идентификатора",
+          "prompt":"Выберите тип идентификатора",
+          "widget":{
+            "type":"radio",
+            "choices":[
+              {
+                "value":"2",
+                "title":"Номер счета"
+              },
+              {
+                "value":"5",
+                "title":"Номер карты"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "type":"dependency",
+        "condition":{
+          "type":"predicate",
+          "field":"account_type",
+          "predicate":{
+            "type":"regex",
+            "pattern":"^2$"
+          }
+        },
+        "content":{
+          "elements":[
+            {
+              "type":"field",
+              "name":"mfo",
+              "validator":{
+                "type":"predicate",
+                "predicate":{
+                  "type":"regex",
+                  "pattern":"^\\d{9}$"
+                },
+                "message":"Неверный БИК"
+              },
+              "view":{
+                "title":"БИК",
+                "prompt":"Введите БИК",
+                "widget":{
+                  "type":"text",
+                  "keyboard":"numeric"
+                }
+              }
+            },
+            {
+              "type":"field",
+              "name":"account",
+              "validator":{
+                "type":"predicate",
+                "predicate":{
+                  "type":"regex",
+                  "pattern":"^\\d{20}$"
+                },
+                "message":"Неверное значение"
+              },
+              "view":{
+                "title":"Номер счета",
+                "prompt":"Номер счета",
+                "widget":{
+                  "type":"text",
+                  "keyboard":"numeric"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type":"dependency",
+        "condition":{
+          "type":"predicate",
+          "field":"account_type",
+          "predicate":{
+            "type":"regex",
+            "pattern":"^5$"
+          }
+        },
+        "content":{
+          "elements":[
+            {
+              "type":"field",
+              "name":"account",
+              "semantics":{
+                "type":"CardNumber"
+              },
+              "validator":{
+                "type":"predicate",
+                "predicate":{
+                  "type":"regex",
+                  "pattern":"^\\d{4} \\d{4} \\d{4} \\d{4,7}$"
+                },
+                "message":"Неверный номер карты"
+              },
+              "view":{
+                "title":"Номер карты",
+                "prompt":"Введите номер карты",
+                "widget":{
+                  "type":"text"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type":"dependency",
+        "condition":{
+          "type":"predicate",
+          "field":"account_type",
+          "predicate":{
+            "type":"regex",
+            "pattern":"^2$"
+          }
+        },
+        "content":{
+          "elements":[
+            {
+              "type":"field",
+              "name":"urgent",
+              "validator":{
+                "type":"predicate",
+                "predicate":{
+                  "type":"regex",
+                  "pattern":"^0$|^1$"
+                },
+                "message":"Необходимо выбрать тип платежа"
+              },
+              "view":{
+                "title":"Тип платежа",
+                "prompt":"Выберите тип платежа",
+                "widget":{
+                  "type":"radio",
+                  "choices":[
+                    {
+                      "value":"0",
+                      "title":"Обычный платеж"
+                    },
+                    {
+                      "value":"1",
+                      "title":"Срочный платеж"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type":"field",
+              "name":"lname",
+              "semantics":{
+                "type":"LastName"
+              },
+              "validator":{
+                "type":"predicate",
+                "predicate":{
+                  "type":"regex",
+                  "pattern":"^[а-яА-Я\\-\\s]{2,40}$"
+                },
+                "message":"Неверное значение"
+              },
+              "view":{
+                "title":"Фамилия владельца счета",
+                "prompt":"Фамилия владельца счета",
+                "widget":{
+                  "type":"text"
+                }
+              }
+            },
+            {
+              "type":"field",
+              "name":"fname",
+              "semantics":{
+                "type":"FirstName"
+              },
+              "validator":{
+                "type":"predicate",
+                "predicate":{
+                  "type":"regex",
+                  "pattern":"^[а-яА-Я\\-\\s]{2,40}$"
+                },
+                "message":"Неверное значение"
+              },
+              "view":{
+                "title":"Имя владельца счета",
+                "prompt":"Имя владельца счета",
+                "widget":{
+                  "type":"text"
+                }
+              }
+            },
+            {
+              "type":"field",
+              "name":"mname",
+              "semantics":{
+                "type":"MiddleName"
+              },
+              "validator":{
+                "type":"predicate",
+                "predicate":{
+                  "type":"regex",
+                  "pattern":"^[а-яА-Я\\-\\s]{2,40}$"
+                },
+                "message":"Неверное значение"
+              },
+              "view":{
+                "title":"Отчество владельца счета",
+                "prompt":"Отчество владельца счета",
+                "widget":{
+                  "type":"text"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
