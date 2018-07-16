@@ -105,7 +105,7 @@ public class AdapterRecycler extends RecyclerView.Adapter<AdapterRecycler.ItemAd
                             long id) {
                             if (position != pos) { // пропускаем обработчик сохраненной позиции элемента
                                 element.getView().getWidget().setSelectedPosition(position);
-//                                element.getView().getWidget().setText();
+                                closeKeyboard(view);
                                 mSpinnerCallBack.spinnerItemSelected(element);
                             }
                     }
